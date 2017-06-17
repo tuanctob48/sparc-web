@@ -1,0 +1,88 @@
+.main-svg {
+    position: fixed;
+    left: 0;
+    height: 1000px;
+    width: 75%;
+    border: 1px solid #999;
+}
+
+.detail-bar {
+    width: 25%;
+    float: right;
+}
+
+.edge rect {
+    fill: #fff
+}
+
+.edgePath path {
+    stroke: #333;
+    /*stroke-width: 1.5px;*/
+}
+
+.node {
+    cursor: pointer;
+    fill: rgb(210, 255, 247);
+    stroke-width: 1.5px;
+    stroke: #333;
+}
+
+.selected-node {
+    cursor: pointer;
+    fill: rgb(255, 240, 137);
+    stroke-width: 1.5px;
+    stroke: #333;
+}
+
+/*.node > rect {*/
+
+/*}*/
+
+g {
+    pointer-events: all;
+}
+
+.expandLeft-toggle {
+    display: inline-block;
+    margin-right: 5px;
+    max-height: 100%;
+}
+
+.expandRight-toggle {
+    display: inline-block;
+    margin-left: 5px;
+    max-height: 100%;
+}
+
+.expanded-img {
+    background-color: #ff0040;
+    height: 12px;
+    width: 12px;
+}
+
+.collapsed-img {
+    background-color: #b3ffa1;
+    height: 12px;
+    width: 12px;
+}
+
+.name-element {
+    color: #000000;
+    display: inline-block;
+}
+
+.selected-node > rect {
+    stroke-width: 3px;
+    stroke: #49a0d4;
+}
+
+.foot {
+    display: table-row;
+    vertical-align: bottom;
+    height: 1px;
+}
+
+#region-map {
+    /*width: 600px;*/
+    height: 400px
+}
