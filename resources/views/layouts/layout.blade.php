@@ -50,15 +50,11 @@ Change History  :
                   // check user authen, if user has been authen then redirect to page home
                   if(isset($_SESSION['status_authen']))
                   {
-                      if($_SESSION['status_authen']==1)
-                      {
-                        $value_login=1;
-                      
-                        
-                      }
-                     // else
-                      //  echo @'<ul><li> <a href="{{url('/login')}}"> Đăng nhập </a></li></ul>'
-                  }
+                    if($_SESSION['status_authen']==1)
+                    {
+        	            $value_login=1;
+                    }
+									}
                   if($value_login==1){
                  	@endphp 
                     <ul><li> <a href="{{url('/logout')}}">Chao </a></li></ul>
