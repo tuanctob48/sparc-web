@@ -41,7 +41,7 @@ Change History  :
              <ul><li><a href="{{url('/home')}}">Trang chủ</a></li></ul>
              <ul><li><a href="{{url('/report')}}">Tin tức</a></li></ul>
              <ul><li><a href="{{url('/about')}}">Liên Hệ</a></li></ul>
-                <?php 
+                	@php 
                   if(!isset($_SESSION))
                   {
                       session_start();
@@ -60,23 +60,17 @@ Change History  :
                       //  echo @'<ul><li> <a href="{{url('/login')}}"> Đăng nhập </a></li></ul>'
                   }
                   if($value_login==1){
-                  ?>
+                 	@endphp 
                     <ul><li> <a href="{{url('/logout')}}">Chao </a></li></ul>
-
-                  <?php
+									@php
                   }
                   else
                   {
-                    ?>
+                  @endphp
                      <ul><li> <a href="{{url('/login')}}"> Đăng nhập </a></li></ul>
-                    <?php
+                  @php
                   }
-
-                  
-
-                ?>
-
-
+                @endphp
          </nav>
    </div>
 </header>
