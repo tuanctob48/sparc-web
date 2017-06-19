@@ -1,13 +1,11 @@
-
 @extends('layouts.layout')
-
 @section('content')
-
+<div class="clear"></div>
+<main>
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <h2 class="text-center">Login</h2>
-
           <?php
                 if(!isset($_SESSION))
                 {
@@ -54,7 +52,6 @@
                     }
                 }
             ?>
-
             <div class="account-wall" style="padding-top: 5%">
                 <form class="form-signin" method="POST" action="login" >
                     <div style="padding-left: 35%">
@@ -62,7 +59,7 @@
                     </div>
                     <div style="padding-top: 5%">
                         {{csrf_field() }}
-                        <input type="text" id="username" class="form-control" name="username" placeholder="EPOCH ID" required autofocus>
+                        <input type="text" id="username" class="form-control" name="username" placeholder="Username" required autofocus>
                         <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                     </div>
                     <div style="padding-top: 10%;padding-left: 35%;width: 200px">
@@ -73,5 +70,10 @@
         </div>
     </div>
 </div>
-
+</main>
+<footer>
+    <div class="col-12 banquyen">
+             <p>Designed by Hoang Thi Nhung</p>
+          </div>
+</footer>
 @endsection
