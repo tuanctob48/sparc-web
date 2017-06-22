@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
+use App\Articles;
 class PagesController extends Controller
 {
 
@@ -23,6 +28,18 @@ class PagesController extends Controller
     {
         return view('pages.about');
     }
+
+    public function page_importdata()
+    {
+        return view('pages.importdata');
+    }
+    public function page_postdata(Request $request){
+			$article = new Articles;
+			$fileDirectory = $article->uploadFile($request);
+			$article->insertArticles2Database($fileDirectory);
+    }
+
+
 
     public function page_login()
     {
