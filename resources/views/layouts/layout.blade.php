@@ -16,7 +16,7 @@ Change History  :
 <link rel="stylesheet" type="text/css" href="{{url('css/font-awesome.min.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/default.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
 </head>
 <header>
   <div class="container">
@@ -29,12 +29,14 @@ Change History  :
       <ul><li><a href="{{url('/home')}}">Trang chủ</a></li></ul>
       <ul><li><a href="{{url('/report')}}">Tin tức</a></li></ul>
       <ul><li><a href="{{url('/about')}}">Liên Hệ</a></li></ul>
-     	@php 
+	<ul><li><a href="{{url('/importdata')}}">Import Data</a></li></ul>     	
+	@php 
         if(!isset($_SESSION))
 	      {
           session_start();
         }
         $value_login=0;
+				$value_name="undefine";
         // check user authen, if user has been authen then redirect to page home
         if(isset($_SESSION['status_authen']))
         {
@@ -43,9 +45,13 @@ Change History  :
 	          $value_login=1;
           }
 				}
+				if(isset($_SESSION['status_name']))
+        {
+					$value_name = $_SESSION['status_name'];
+				}
         if($value_login==1){
      	@endphp 
-        <ul><li> <a href="{{url('/logout')}}">Chao </a></li></ul>
+        <ul><li> <a href="{{url('/logout')}}">Chao {{$value_name}} </a></li></ul>
 			@php
         }else{
      	@endphp

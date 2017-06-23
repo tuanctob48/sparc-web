@@ -100,6 +100,7 @@ class Articles extends Model
         return $striped_content;
     }
 		public function uploadFile(Request $request){
+
 			       /*  $input = $request->all();
 
      if($file = $request->filename{
@@ -109,9 +110,8 @@ class Articles extends Model
         $input['your_file'] = $name;
 
     }*/
-
+				 
          $input = Input::all();
-				 echo $input;
         // VALIDATION RULES
         $rules = array(
             'file' => 'image|max:3000',
@@ -119,21 +119,28 @@ class Articles extends Model
         // PASS THE INPUT AND RULES INTO THE VALIDATOR
         $validation = Validator::make($input, $rules);
         $file = array_get($input,'file');
+				$img = array_get($input,'img');
         // SET UPLOAD PATH
         $destinationPath = 'docfile';
         // GET THE FILE EXTENSION
         // RENAME THE UPLOAD WITH RANDOM NUMBER
         $fileName = $file ->getClientOriginalName();
-        // MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
-        $upload_success = $file->move($destinationPath, $fileName);
-        if ($upload_success) {
+				$imgName = $img->getClientOriginalName();
+				// MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
+        $upload_success_file = $file->move($destinationPath, $fileName);
+				$upload_success_img = $img->move($destinationPath,$imgName);
+        if ($upload_success_file && $upload_success_img) {
             $filepath = $request->filename;
+						$imgpath = $request->imgname;
             $filedirectory = $filepath = "docfile"."//".$filepath."";
+						$imgdirectory = $filepath = "docfile"."//".$imgpath."";
             $docfiledata = realpath($filedirectory);
-
+						$docfileimg = realpath($imgdirectory);
+						$uploadedFile[0] = $docfiledata;
+						$uploadedFile[1] = $docfileimg;
         }
         // echo $request->file;
-        echo $request->filename;
-				// return $docfiledata;
+        // echo $request->filename;
+				return $uploadedFile;
 		}
 }

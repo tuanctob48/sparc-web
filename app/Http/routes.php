@@ -8,7 +8,7 @@ Route::post('login', 'PagesController@login')->name('login');
 Route::get('logout', 'PagesController@page_logout');
 Route::get('register', 'PagesController@page_register');
 Route::get('importdata', 'PagesController@page_importdata');
-Route::post('gedatabases', 'PagesController@page_postdata');
+Route::post('getdatabases', 'PagesController@page_postdata');
 
 
 Route::get('/fileairmap/{req}/{res}/{next}', 'PagesController@page_file');

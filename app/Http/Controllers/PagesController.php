@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use App\Articles;
+define("VALUE_EQUAL", 0);
+define("RETRY_LOGIN", 0);
 class PagesController extends Controller
 {
 
@@ -35,15 +37,15 @@ class PagesController extends Controller
     }
     public function page_postdata(Request $request){
 			$article = new Articles;
-			$fileDirectory = $article->uploadFile($request);
+			$uploadedFile = $article->uploadFile($request);
+			$fileDirectory = $uploadedFile[0];
 			$article->insertArticles2Database($fileDirectory);
     }
-
-
-
     public function page_login()
     {
-        $authen= null;
+				$authen[0] = 0;
+				$authen[1] = "";
+				$authen[2] = "00";
         return view('pages.login',compact('authen'));
     }
     public function login(Request $request){
