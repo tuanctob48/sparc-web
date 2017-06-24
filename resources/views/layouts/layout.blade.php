@@ -16,7 +16,6 @@ Change History  :
 <link rel="stylesheet" type="text/css" href="{{url('css/font-awesome.min.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/default.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}"/>
-{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
 </head>
 <header>
   <div class="container">
@@ -29,7 +28,6 @@ Change History  :
       <ul><li><a href="{{url('/home')}}">Trang chủ</a></li></ul>
       <ul><li><a href="{{url('/report')}}">Tin tức</a></li></ul>
       <ul><li><a href="{{url('/about')}}">Liên Hệ</a></li></ul>
-	<ul><li><a href="{{url('/importdata')}}">Import Data</a></li></ul>     	
 	@php 
         if(!isset($_SESSION))
 	      {
@@ -40,7 +38,7 @@ Change History  :
         // check user authen, if user has been authen then redirect to page home
         if(isset($_SESSION['status_authen']))
         {
-          if($_SESSION['status_authen']==1)
+          if($_SESSION['status_authen']==AUTHEN_SUCCESS)
           {
 	          $value_login=1;
           }
@@ -50,9 +48,16 @@ Change History  :
 					$value_name = $_SESSION['status_name'];
 				}
         if($value_login==1){
-     	@endphp 
-        <ul><li> <a href="{{url('/logout')}}">Chao {{$value_name}} </a></li></ul>
-			@php
+     		@endphp 
+      	  <ul><li> <a href="{{url('/logout')}}">Chao {{$value_name}} </a></li></ul>	
+					@php
+					if($_SESSION['status_admin'] == LEADER_STATUS || $_SESSION['status_admin'] == ADMIN_STATUS){
+					@endphp	
+					<ul><li><a href="{{url('/importdata')}}">Import Data</a></li></ul>
+					@php   	
+					}
+					@endphp
+				@php
         }else{
      	@endphp
 				<ul><li> <a href="{{url('/login')}}"> Đăng nhập </a></li></ul>

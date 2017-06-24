@@ -12,6 +12,13 @@ use DB;
 use App\Articles;
 define("VALUE_EQUAL", 0);
 define("RETRY_LOGIN", 0);
+define("GUEST_STATUS","11");
+define("USER_STATUS","10");
+define("LEADER_STATUS","01");
+define("ADMIN_STATUS","00");
+define("AUTHEN_SUCCESS",1);
+define("AUTHEN_FAILED",0);
+define("NULL_USERNAME","");
 class PagesController extends Controller
 {
 
@@ -43,22 +50,22 @@ class PagesController extends Controller
     }
     public function page_login()
     {
-				$authen[0] = 0;
-				$authen[1] = "";
-				$authen[2] = "00";
+				$authen[0] = AUTHEN_FAILED;
+				$authen[1] = NULL_USERNAME;
+				$authen[2] = GUEST_STATUS;
         return view('pages.login',compact('authen'));
     }
     public function login(Request $request){
         $username = $request['username'];
         $password = $request['password'];
-        $result = DB::table('users')
+        $typeAccount= DB::table('users')
             ->where('username',$username)
             ->where('password',$password)->value('typeAccount');
-        $authen[0] = 0;
-        if($result != NULL){
+        $authen[0] = AUTHEN_FAILED;
+        if($typeAccount != NULL){
+            $authen[0] = AUTHEN_SUCCESS;
             $authen[1] = $username;
-            $authen[0] = 1;
-            $authen[2] = $result;
+            $authen[2] = $typeAccount;
         }
         return view('pages.login',compact('authen'));
 
