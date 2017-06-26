@@ -29,8 +29,8 @@ class PagesController extends Controller
     }
     public function page_report()
     {
-
-        return view('pages.report');
+			$articles = DB::table('articles')->orderBy('created_at','desc')->take(10)->get();
+        return view('pages.report',compact($articles));
     }
 
     public function page_about()
