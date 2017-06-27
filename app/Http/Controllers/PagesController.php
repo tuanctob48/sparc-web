@@ -111,6 +111,12 @@ class PagesController extends Controller
 		public function getCookie(Request $request){
 			return $request->cookie('KhoaHoc');
 		}
+        public function page_viewpost($id){
+            $fileDirectory= DB::table('articles')
+            ->where('id',$id)->value('fileUrl');
+            $content = file_get_contents($fileDirectory);
+            return view('pages.viewpost')->with('content',$content);
+        }
     // public function showProfile($username){
     //     if($request->session()->has('username')){
     //         return view('user/{$username}/profile');

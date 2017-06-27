@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+header("Connection: close");
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use ZipArchive;
 use PhpOffice\PhpWord\IOFactory;
-// use App\docx_reader_scanner;
+use App\Docx_reader;
 class Articles extends Model
 {
 	
@@ -47,20 +47,38 @@ class Articles extends Model
 			$user_id = DB::table('users')->where('username',$username)->value('id');
 			$fileDirectory = $uploadedFile[0];
 			$imgDirectory = $uploadedFile[1];
-			// $doc = new docx_reader_scanner();
-			// $doc->setFile($fileDirectory);
-			// if(!$doc->get_errors()) {
-			//     $html = $doc->to_html();
-			//     $plain_text = $doc->to_plain_text();
-			//     echo $html;
-			// } else {
-			//     echo implode(', ',$doc->get_errors());
-			// }
-			$input = $this->read_file_docx($fileDirectory);
-			$name = strtok($input, "\n");
-			$tags="hello";
-			$category="it's me";
-			$intro="Long time no see";
+			$doc = new Docx_reader();
+			// echo $fileDirectory;
+			$doc->setFile($fileDirectory);
+			if(!$doc->get_errors()) {
+			    $html = $doc->to_html();
+			    $plain_text = $doc->to_plain_text();
+			    // echo $plain_text;
+			} else {
+			    echo implode(', ',$doc->get_errors());
+			}
+			// $input = $this->read_file_docx($fileDirectory);
+			$str= explode("””",$plain_text);
+			$name = $str[0];
+			$tags = $str[1];
+			$category = $str[2];
+			$intro = $str[3];
+			// echo $name;
+			$k = stripos($html,$name,0);
+			echo $k;
+			// var_dump($str);
+			substr_replace($html,'',stripos($html,$name,0),strlen($name));
+			substr_replace($html,'',stripos($html,$tags,0),strlen($tags));
+			substr_replace($html,'',stripos($html,$category,0),strlen($category));
+			substr_replace($html,'',stripos($html,$intro,0),strlen($intro));
+			$fp = @fopen($fileDirectory.".html", "w");
+			if (!$fp) {
+				echo 'Mở file không thành công';
+			}
+			else
+			{
+		    	fwrite($fp, $html);
+			}
 			DB::table('articles')->insert([
 				'user_id' => $user_id,
 				'name' => $name,
@@ -104,7 +122,7 @@ class Articles extends Model
 				$filedirectory = $filepath = "docfile"."//".$filepath."";
 				$imgdirectory = $filepath = "docfile"."//".$imgpath."";
 				$docfiledata = realpath($filedirectory);
-				$docfileimg = realpath($imgdirectory);
+				$docfileimg = $imgdirectory;
 				$uploadedFile[0] = $docfiledata;
 				$uploadedFile[1] = $docfileimg;
 				}
