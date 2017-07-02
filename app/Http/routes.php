@@ -16,6 +16,8 @@ Route::group(['prefix' => 'report'], function () {
 		'as'=>'viewpost'
 	]);
 });
+Route::get('study','PagesController@page_study');
 Route::get('/fileairmap/{req}/{res}/{next}', 'PagesController@page_file');
 Route::get('/filewater/{req}/{res}/{next}', 'PagesController@page_file');
+Route::get('/testView','PagesController@page_testRiew');
 //router.get('/', (req, res, next) 

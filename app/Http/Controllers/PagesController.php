@@ -70,6 +70,12 @@ class PagesController extends Controller
 
     }
 
+    public function post_status(Request $request){
+      $status_error = Node::checkNodeExist($request['id']);
+      if($status_error == null){
+        Node::insertStatusNode($request);
+      }
+    }
     public function page_file($req, $res, $next )
     {
         $result=Watercommunity.page_file($req, $res, $next);
@@ -81,6 +87,12 @@ class PagesController extends Controller
     }
     public function page_register(){
         return view('auth.register');
+    }
+    public function page_testView(){
+      return view('pages.testView');
+    }
+    public function page_study(){
+      return view('pages.study');
     }
     public function getURL(Request $request){
     // return $request->url();
