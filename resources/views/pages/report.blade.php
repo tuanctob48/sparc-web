@@ -11,34 +11,8 @@ Change History  :
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @section('content')
-           {{-- @php
-            for($i=0;$i<100;$i++){
-               $link[$i][0]=" 1. ";
-               $link[$i][1]="http://";
-            }		
-            for($i=0;$i<99;$i++){
-              $haha="<br><a href=" ."\"".$link[$i][1]."\">".$link[$i][0]."</a>";
-              echo $haha; 
-            }
-        @endphp   --}}
 <div class="clear"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="/js/jquery.jscroll.js"></script>
-<script type="text/javascript">
-    $('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
-</script>
+
 <main>
 <div class="container">
   <div class="row">
@@ -46,7 +20,7 @@ Change History  :
       <div class="panel panel-default">
         <div class="panel-heading">Report</div>
         <div class="panel-body">
-          <div class="infinite-scroll"> 
+          <div class="infinite-scroll">
             @foreach($articles as $article)
               <div class="row">
                 <div class="col-9"><a href="{!! route('viewpost', ['id'=>$article->id]) !!}">Link</a></div>
@@ -55,7 +29,6 @@ Change History  :
               <div class="row">
                 <div class="col-3">
                   <div class="thumbnail">
-                    <!--<a href=$article->imgUrl target="_blank">-->
                     <?php
                       $vaulespecific="\"";
                         echo "<img src=".$vaulespecific.$article->imgUrl.$vaulespecific
@@ -63,7 +36,6 @@ Change History  :
                         .$vaulespecific." width=".$vaulespecific."304".$vaulespecific." height=".$vaulespecific."236"
                         .$vaulespecific.">"; 
                       ?>
-                    </a>	
                   </div>
                 </div>
                 <div class="col-9">
@@ -93,5 +65,24 @@ Change History  :
              <p>Designed by Hoang Thi Nhung</p>
           </div>
 </footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.jscroll.min.js"></script>
+    {{-- MAKE SURE THAT YOU PUT THE CORRECT PATH FOR jquery.jscroll.min.js --}}
+    
+    <script type="text/javascript">
+        $('ul.pagination').hide();
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                autoTrigger: true,
+                loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.infinite-scroll',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
+        });
+    </script>
 @endsection

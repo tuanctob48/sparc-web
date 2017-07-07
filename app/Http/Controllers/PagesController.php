@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use DB;
 use App\Articles;
-// use Request;
 
 define("VALUE_EQUAL", 0);
 define("RETRY_LOGIN", 0);
@@ -29,19 +28,18 @@ class PagesController extends Controller
 
         return view('pages.home');
     }
+    // public function page_report2()
+    // {
+		// 	$articles = DB::table('articles')->orderBy('created_at','desc')->paginate(2);
+    //   return view('pages.report',compact('articles'));
+    // }
     public function page_report()
     {
-			$articles = DB::table('articles')->orderBy('created_at','desc')->paginate(2);
-      return view('pages.report',compact('articles'));
+       $articles = Articles::latest()->paginate(1);
+        // return View::make('pages.report', array('articles' => $articles));
+        return view('pages.report',compact('articles'));
     }
-    public function showArticles()
-    {
-        $articles = Articles::paginate(1);
-        if (Request::ajax()) {
-            return Response::json(View::make('articles', array('articles' => $articles))->render());
-        }
-        return View::make('pages.report', array('articles' => $articles));
-    }
+
     public function page_about()
     {
         return view('pages.about');
@@ -147,9 +145,6 @@ class PagesController extends Controller
 		public function getCookie(Request $request){
 			return $request->cookie('KhoaHoc');
 		}
-    public function testajax(){
-      return view('pages.testajax');
-    }
         public function page_viewpost($id){
             $fileDirectory= DB::table('articles')
             ->where('id',$id)->value('fileUrl');
