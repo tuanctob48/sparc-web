@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use DB;
 use App\Articles;
+
 define("VALUE_EQUAL", 0);
 define("RETRY_LOGIN", 0);
 define("GUEST_STATUS","11");
@@ -27,10 +28,16 @@ class PagesController extends Controller
 
         return view('pages.home');
     }
+    // public function page_report2()
+    // {
+		// 	$articles = DB::table('articles')->orderBy('created_at','desc')->paginate(2);
+    //   return view('pages.report',compact('articles'));
+    // }
     public function page_report()
     {
-
-        return view('pages.report');
+       $articles = Articles::latest()->paginate(1);
+        // return View::make('pages.report', array('articles' => $articles));
+        return view('pages.report',compact('articles'));
     }
 
     public function page_about()
@@ -42,11 +49,26 @@ class PagesController extends Controller
     {
         return view('pages.importdata');
     }
+    public function page_importfile()
+    {
+      return view('pages.importfile');
+    }
+    public function get_filedta(Request $request){
+        $data[0]="hehhe";
+        $data[1]="mINH XIN CHIA KHOA";
+        $data[2]=$request->name;
+        return $data;
+    }
+    public function page_uploadfile(Request $request)	{
+      $article = new Articles;
+      // echo $request;
+			$uploadedFile = $article->uploadFileCustom($request);
+      return view('pages.uploadFileSuccess')->with('uploadFile',$uploadedFile);
+    }
     public function page_postdata(Request $request){
 			$article = new Articles;
 			$uploadedFile = $article->uploadFile($request);
-			$fileDirectory = $uploadedFile[0];
-			$article->insertArticles2Database($fileDirectory);
+			$article->insertArticles2Database($uploadedFile);
     }
     public function page_login()
     {
@@ -71,6 +93,12 @@ class PagesController extends Controller
 
     }
 
+    public function post_status(Request $request){
+      $status_error = Node::checkNodeExist($request['id']);
+      if($status_error == null){
+        Node::insertStatusNode($request);
+      }
+    }
     public function page_file($req, $res, $next )
     {
         $result=Watercommunity.page_file($req, $res, $next);
@@ -83,9 +111,15 @@ class PagesController extends Controller
     public function page_register(){
         return view('auth.register');
     }
+    public function page_testView(){
+      return view('pages.testView');
+    }
+    public function page_study(){
+      return view('pages.study');
+    }
     public function getURL(Request $request){
     // return $request->url();
-    // if($request->isMethod('post'))
+    // if($request->isMethod('Article'))
     //     echo "Phuong thuc get";
     // else
     //     echo "Khong phai phuong thuc get";
@@ -93,9 +127,8 @@ class PagesController extends Controller
 			echo "Co get";
 		else
 			echo 'Khong get';
-
- 
     }
+
 		public function postForm(Request $request){
 			echo $request->HoTen;
 		}
@@ -112,6 +145,12 @@ class PagesController extends Controller
 		public function getCookie(Request $request){
 			return $request->cookie('KhoaHoc');
 		}
+        public function page_viewpost($id){
+            $fileDirectory= DB::table('articles')
+            ->where('id',$id)->value('fileUrl');
+            $content = file_get_contents($fileDirectory);
+            return view('pages.viewpost')->with('content',$content);
+        }
     // public function showProfile($username){
     //     if($request->session()->has('username')){
     //         return view('user/{$username}/profile');
