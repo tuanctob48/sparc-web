@@ -29,8 +29,8 @@ class PagesController extends Controller
     }
     public function page_report()
     {
-
-        return view('pages.report');
+			$articles = DB::table('articles')->orderBy('created_at','desc')->take(10)->get();
+      return view('pages.report',compact('articles'));
     }
 
     public function page_about()
@@ -45,8 +45,7 @@ class PagesController extends Controller
     public function page_postdata(Request $request){
 			$article = new Articles;
 			$uploadedFile = $article->uploadFile($request);
-			$fileDirectory = $uploadedFile[0];
-			$article->insertArticles2Database($fileDirectory);
+			$article->insertArticles2Database($uploadedFile);
     }
     public function page_login()
     {
