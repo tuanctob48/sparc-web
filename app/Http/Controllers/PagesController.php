@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use DB;
 use App\Articles;
+// use Request;
+
 define("VALUE_EQUAL", 0);
 define("RETRY_LOGIN", 0);
 define("GUEST_STATUS","11");
@@ -29,10 +31,17 @@ class PagesController extends Controller
     }
     public function page_report()
     {
-			$articles = DB::table('articles')->orderBy('created_at','desc')->take(10)->get();
+			$articles = DB::table('articles')->orderBy('created_at','desc')->paginate(2);
       return view('pages.report',compact('articles'));
     }
-
+    public function showArticles()
+    {
+        $articles = Articles::paginate(1);
+        if (Request::ajax()) {
+            return Response::json(View::make('articles', array('articles' => $articles))->render());
+        }
+        return View::make('pages.report', array('articles' => $articles));
+    }
     public function page_about()
     {
         return view('pages.about');
@@ -41,6 +50,22 @@ class PagesController extends Controller
     public function page_importdata()
     {
         return view('pages.importdata');
+    }
+    public function page_importfile()
+    {
+      return view('pages.importfile');
+    }
+    public function get_filedta(Request $request){
+        $data[0]="hehhe";
+        $data[1]="mINH XIN CHIA KHOA";
+        $data[2]=$request->name;
+        return $data;
+    }
+    public function page_uploadfile(Request $request)	{
+      $article = new Articles;
+      // echo $request;
+			$uploadedFile = $article->uploadFileCustom($request);
+      return view('pages.uploadFileSuccess')->with('uploadFile',$uploadedFile);
     }
     public function page_postdata(Request $request){
 			$article = new Articles;
@@ -96,7 +121,7 @@ class PagesController extends Controller
     }
     public function getURL(Request $request){
     // return $request->url();
-    // if($request->isMethod('post'))
+    // if($request->isMethod('Article'))
     //     echo "Phuong thuc get";
     // else
     //     echo "Khong phai phuong thuc get";
@@ -104,9 +129,8 @@ class PagesController extends Controller
 			echo "Co get";
 		else
 			echo 'Khong get';
-
- 
     }
+
 		public function postForm(Request $request){
 			echo $request->HoTen;
 		}
@@ -123,6 +147,9 @@ class PagesController extends Controller
 		public function getCookie(Request $request){
 			return $request->cookie('KhoaHoc');
 		}
+    public function testajax(){
+      return view('pages.testajax');
+    }
         public function page_viewpost($id){
             $fileDirectory= DB::table('articles')
             ->where('id',$id)->value('fileUrl');

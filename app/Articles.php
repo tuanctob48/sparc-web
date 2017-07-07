@@ -13,6 +13,9 @@ use PhpOffice\PhpWord\IOFactory;
 use App\Docx_reader;
 class Articles extends Model
 {
+  protected $table = 'articles';
+
+  protected $guarded = array('id');
 	
     public function getIntro(){
 
@@ -90,6 +93,25 @@ class Articles extends Model
 				'created_at'=> \Carbon\Carbon::now(),
 				'updated_at'=>\Carbon\Carbon::now(),
 			]);
+		}
+    public function uploadFileCustom(Request $request){
+      	$input = Input::all();
+				// VALIDATION RULES
+				$file = array_get($input,'file');
+				// SET UPLOAD PATH
+				$destinationPath = 'docfile';
+				// GET THE FILE EXTENSION
+				// RENAME THE UPLOAD WITH RANDOM NUMBER
+				$fileName = $file ->getClientOriginalName();
+				// MOVE THE UPLOADED FILES TO THE DESTINATION DIRECTORY
+				$upload_success_file = $file->move($destinationPath, $fileName);
+				if ($upload_success_file) {
+				$filepath = $request->filename;
+				$filedirectory = $filepath = "docfile"."//".$filepath."";
+				}
+				// echo $request->file;
+				// echo $request->filename;
+				return $filedirectory;
 		}
 		public function uploadFile(Request $request){
 		       /*  $input = $request->all();

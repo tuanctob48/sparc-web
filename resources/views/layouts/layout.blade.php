@@ -16,6 +16,23 @@ Change History  :
 <link rel="stylesheet" type="text/css" href="{{url('css/font-awesome.min.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/default.css')}}"/>
 <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}"/>
+ <link rel="stylesheet" type="text/css" href="{{url('/css/bootstrap-theme.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('/css/popup.css')}}" >
+    <link rel="stylesheet" type="text/css" href="{{url('/css/_styles.css')}}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{url('/css/jquery.dataTables.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('/css/demo.css')}}">
+
+    {{-- Declare *.js library--}}
+    <script type="text/javascript" src="{{url('/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('/js/d3.v3.min.js')}}" charset="utf-8"></script>
+    <script type="text/javascript" src="{{url('/js/dagre-d3.js')}}"></script>
+    <script type="text/javascript" src="{{url('/js/underscore-min.js')}}"></script>
+    <script type="text/javascript" language="javascript" src="{{url('/js/popup.js')}}"></script>
+    <script type="text/javascript" language="javascript" src="{{url('/js/jquery.dataTables.js')}}"></script>
+    {{--<script type="text/javascript" language="javascript" src="{{url('/js/demo.js')}}"></script>--}}
+
 </head>
 <header>
   <div class="container">
@@ -54,7 +71,8 @@ Change History  :
 					if($_SESSION['status_admin'] == LEADER_STATUS || $_SESSION['status_admin'] == ADMIN_STATUS){
 					@endphp	
 					<ul><li><a href="{{url('/importdata')}}">Import Data</a></li></ul>
-					@php   	
+					<ul><li><a href="{{url('/importfile')}}">Import File</a></li></ul>
+          @php   	
 					}
 					@endphp
 				@php
