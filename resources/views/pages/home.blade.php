@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 @section('content')
 <main>
 	<div class="clear"></div>   
@@ -21,7 +21,12 @@
 		</div>
 	</div> --}}
 </main>
-<footer>
+<footer style="clear: left;">
+    <div class="container row">
+          <div class="col-6 chitiet_footer"></div>
+          <div class="col-6 social_footer"></div>
+          
+    </div>
     <div class="col-12 banquyen">
              <p>Designed by Hoang Thi Nhung</p>
           </div>

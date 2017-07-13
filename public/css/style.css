@@ -1,7 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
 a{text-decoration:none;}
-.container{ box-shadow: 0 0 10px #9c9f99; width:1200px; margin:0 auto;	background-color: #Fff;}
+.container{
+	 box-shadow: 0 0 10px #9c9f99;
+	  width:1200px; margin:0 auto;
+	  	background-color: #FFFFFF;}
 
 
 
@@ -13,7 +16,7 @@ header .container .header_top{
 	height: 127px; 
 	box-shadow: 0 -5px 10px #9c9f99;
 	margin-top: 30px;
-	background: url(../images/bg_top.png) no-repeat bottom right;
+	background: url('../images/bg_top.png') no-repeat bottom right;
 }
 header .container .header_top .logo{
    padding-top: 30px;
@@ -30,21 +33,25 @@ header .container .header_top .logo{
 	color: #69706b;
 	margin-top: 2px;
 }
-header .container nav{
+header .container .meNu{
 	height: 44px;
 	background: url(../images/bg_nav.png) repeat-x;
 
 }
 
-nav ul{
+.meNu ul{
 	list-style-type: none;
 	margin: 0px; padding: 0px;
 }
 
-nav ul li{
+.meNu ul li{
 	float: left;
 }
-nav ul li a{
+
+.meNu ul li:hover #submenu{
+	display: block;
+}
+.meNu ul li a{
 	line-height: 44px;
 	color: #fff;
 	font-size: 14px;
@@ -52,10 +59,22 @@ nav ul li a{
 	text-transform: uppercase;
 	padding: 0 20px;
 }
-nav ul li a:hover, nav ul li a:focus{
+.meNu ul li a:hover, .meNu ul li a:focus{
 	background-color: #fff;
 	color: #66b109;
 }
+#submenu{
+	display: none;
+	position: absolute;
+	/*z-index: 90;*/
+	background-color: #6699ff;
+	/*margin-top: 8px;*/
+}
+#submenu li{
+	float: none;
+	border-bottom: 1px solid #FFFFFF;
+}
+
 
 
 
@@ -91,4 +110,44 @@ footer .banquyen p{
 	text-align: center;
 	color: #9c9f99;
 	font-size: 11px;
+}
+.informations{
+	float: left;
+	width: 950px;
+	height: 200px;
+	padding-left: 20px;
+
+}
+.sumary ul{
+	list-style-type: none;
+}
+.BOX{
+	height: 230px;
+}
+.main{
+	padding: 100px 100px 0px 100px;
+}
+.abc{
+    margin: auto;
+    width: 70%;
+}
+
+.thongTinCoBan{
+	list-style-type: none;
+	float: left;
+	font-size: 20px;
+	
+}
+.cv{
+	clear: left;
+}
+#link{
+	list-style-type: none;
+	color: black;
+	font-size: 20px;
+}
+#link li{
+	padding-bottom: 20px;
+	padding-top: 10px;
+	color: black;
 }

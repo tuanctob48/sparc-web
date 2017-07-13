@@ -16,7 +16,6 @@ class CreateNodeInfo extends Migration
         $table->increments('id');
         $table->timestamps();
         $table->string('address',300);
-        $table->primary('id');
       });
     }
 

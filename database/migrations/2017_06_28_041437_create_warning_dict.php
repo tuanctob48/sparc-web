@@ -14,8 +14,8 @@ class CreateWarningDict extends Migration
     {
         Schema::create('warning_dict', function (Blueprint $table) {
             $table->increments('id');
-						$table->string('name',40);
-						$table->string('description',300);
+			$table->string('name',40);
+			$table->string('description',300);
         });
     }
 

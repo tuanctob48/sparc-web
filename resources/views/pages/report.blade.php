@@ -7,7 +7,7 @@ Author          : Lu Van Cuong
 Change History  :
 ****************************************************************/
 ?>
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @section('content')
@@ -58,9 +58,11 @@ Change History  :
 </div>
 </main>
 <footer>
-    {{-- <div class="container row">
-      <div class="col-12 chitiet_footer"></div>
-    </div> --}}
+    <div class="container row">
+          <div class="col-12 chitiet_footer"></div>
+          <div class="col-12 social_footer"></div>
+          
+    </div>
     <div class="col-12 banquyen">
              <p>Designed by Hoang Thi Nhung</p>
           </div>

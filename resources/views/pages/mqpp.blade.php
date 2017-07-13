@@ -7,7 +7,7 @@ Author          : Lu Van Cuong
 Change History  :
 ****************************************************************/
 ?>
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 
 @section('content')
 

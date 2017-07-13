@@ -7,7 +7,7 @@ Author          : Lu Van Cuong
 Change History  :
 ****************************************************************/
 ?>
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 
 @section('content')
 
@@ -15,87 +15,90 @@ Change History  :
 <!-- Page Content -->
 
 <div class="container">
-    <!-- Introduction Row -->
-    <div class="row">
-        <div class="col-lg-12">
-                <center><h1>Team Development!</h1></center>
-        </div>
-    </div>
-    
+  <div class = "main">
 
-    <!-- Team Members Row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Our Team</h2>
+    <div class="abc">
+      <img src="{{url('/img/thayDung.jpg')}}" alt="thầy Dũng pro" style="width:250px;height:250px;float: left">
+      <ul class="thongTinCoBan">
+        <li>Hàn Huy Dũng</li>
+        <li>email: hanhuydung.hust@gmail.com</li>
+      </ul>
+      
+    </div> 
+
+    <div class="cv">
+      <div class="BOX">
+        <img src="{{url('/img/MachineLearning.png')}}" alt=""
+         style="width:50px;
+         height:50px; 
+         float: left;
+         padding-top: 20px;
+         ">
+
+        <div class="informations">
+          <div class="name">
+            <h2>Lecturer/ Researcher</h2>
+          </div>
+          <div class="sumary">
+
+              <ul>
+                <li style="height:30px">Company NameSchool of Electronics and Telecommunications, Hanoi University of Science and Technology</li>
+                <li style="height:30px">May 2013 – Present | 4 yrs 3 mos</li>
+                <li style="height:30px">1 Dai Co Viet</li>
+              </ul>
+          </div>
         </div>
-        <table style="width:100%">
-        <tr>
-	    	<th>   
-		    	<div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/Nam.jpg')}}" style="height:200px;width:200px;" alt="">
-		            <h3> Đặng Vũ Nam
-		                <small>Project Technical Leader</small>
-		            </h3>
-		        </div>
-	        </th> 
-	        <th>
-		        <div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/May1.jpg')}}" style="height:200px;width:200px;" alt="">
-		            <h3> Trần Thị Mây -
-		                <small> Biotechnlegy Leader</small>
-		            </h3>
-		        </div>
-	        </th>
-	    </tr>
-	    <tr>
-	    	<th>    
-		        <div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/phuong.jpg')}}" style="height:200px;width:200px;" alt="">
-		            <h3>Lê Anh Phương
-		                <small>Member </small>
-		            </h3>
-		        </div>
-		    </th>
-		    <th>    
-	        <div class="col-lg-4 col-sm-6 text-center">
-	            <img class="img-circle img-responsive img-center" src="{{url('/img/tri.jpg')}}" style="height:200px;width:200px;" alt="">
-	            <h3> Hồ Minh Trí
-	                <small>Member</small>
-	            </h3>
-	        </div>
-	        </th>
-	    </tr>
-	    <tr>
-	    	<th>    
-		        <div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/kim.png')}}" style="height:200px;width:200px;" alt="">
-		            <h3> Nguyễn Hữu Kim
-		                <small>Member</small>
-		            </h3>
-		        </div>
-		    </th>
-		    <th>    
-	            <div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/nhat.png')}}" style="height:200px;width:200px;" alt="">
-		            <h3> Lê Xuân Nhất
-		                <small>Member</small>
-		            </h3>
-		        </div>
-		    </th>    
-	     </tr> 
-	     	    <tr>
-	    	<th>    
-		        <div class="col-lg-4 col-sm-6 text-center">
-		            <img class="img-circle img-responsive img-center" src="{{url('/img/vietanh.jpg')}}" style="height:200px;width:200px;" alt="">
-		            <h3>Viet Anh
-		                <small>Member</small>
-		            </h3>
-		        </div>
-		    </th>   
-	     </tr>  
-        </table>
+      </div>
+
+      <div class="BOX">
+        <img src="{{url('/img/MachineLearning.png')}}" alt=""
+         style="width:50px;
+         height:50px; 
+         float: left;
+         padding-top: 20px;
+         ">
+
+        <div class="informations">
+          <div class="name">
+            <h2>Postdoctoral Research Associate</h2>
+          </div>
+          <div class="sumary">
+
+              <ul>
+                <li style="height:30px">Fujitsu Laboratories America</li>
+                <li style="height:30px">Jan 2012 – Apr 2013 | yr 4 mos</li>
+                <li style="height:30px">Conducted research on LTE-A, Device-to-Device communications.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="BOX">
+        <img src="{{url('/img/MachineLearning.png')}}" alt=""
+         style="width:50px;
+         height:50px; 
+         float: left;
+         padding-top: 20px;
+         ">
+
+        <div class="informations">
+          <div class="name">
+            <h2>Research Assistant, Broadband Radio Access Technologies Laboratory</h2>
+          </div>
+          <div class="sumary">
+
+              <ul>
+                <li style="height:30px">UC Davis</li>
+                <li style="height:30px">Sep 2007 – Jan 2012 | 4 yrs 5 mos</li>
+                <li style="height:30px">Electrical and Computer Engineering, University of California, Davis</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
 
+  </div>
 </div>
 
 <footer>

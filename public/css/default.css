@@ -4,6 +4,7 @@
 * {
     box-sizing: border-box;
 }
+
 .clear{clear:both;}
 .row::after {
     content: "";

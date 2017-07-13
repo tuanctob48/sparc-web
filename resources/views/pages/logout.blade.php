@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 <?php
 
  	if(!isset($_SESSION))

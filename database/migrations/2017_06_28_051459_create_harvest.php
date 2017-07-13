@@ -14,10 +14,10 @@ class CreateHarvest extends Migration
     {
         Schema::create('harvest', function (Blueprint $table) {
             $table->integer('id')->unsigned();
-						$table->foreign('id')->references('node_id')->on('node_info');
-						$table->decimal('weight',5,1);
-						$table->string('quality',30);
-						$table->date('created_at');
+			$table->decimal('weight',5,1);
+			$table->string('quality',30);
+			$table->date('created_at');
+			$table->foreign('id')->references('id')->on('node_info');
         });
     }
 
