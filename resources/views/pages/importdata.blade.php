@@ -8,7 +8,7 @@ Change History  :
  ****************************************************************/
 ?>
 
-@extends('layouts.layout')
+@extends('layouts.layout_member')
 
 @section('content')
     <script type="text/javascript" language="javascript" src="{{url('/js/popup.js')}}"></script>   
