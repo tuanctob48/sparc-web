@@ -33,13 +33,18 @@ class PagesController extends Controller
         // 	$articles = DB::table('articles')->orderBy('created_at','desc')->paginate(2);
     //   return view('pages.report',compact('articles'));
     // }
+    public function page_news()
+    {
+        $articles = Articles::latest()->paginate(1);
+        // return View::make('pages.report', array('articles' => $articles));
+        return view('pages.news', compact('articles'));
+    }
     public function page_report()
     {
         $articles = Articles::latest()->paginate(1);
         // return View::make('pages.report', array('articles' => $articles));
         return view('pages.report', compact('articles'));
     }
-
     public function page_about()
     {
         return view('pages.about');
@@ -214,7 +219,7 @@ class PagesController extends Controller
     }
     public function kyNangMem()
     {
-        $data = DB::table('documents')->get();
+        $data = DB::table('documents_detail')->get();
         return view('pages.study.kyNangMem', compact('data'));
     }
     public function news()

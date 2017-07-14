@@ -54,7 +54,7 @@ Change History  :
                       <li><a href="{{url('/doProject')}}">làm dự án</a></li>
                     </ul>
                 </li>
-                <li><a href="{{url('/news')}}">Tin tức</a></li>
+                <li><a href="{{url('/report')}}">Tin tức</a></li>
                 @php 
                     if(!isset($_SESSION)) 
                     { 
