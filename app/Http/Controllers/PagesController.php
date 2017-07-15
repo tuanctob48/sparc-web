@@ -245,9 +245,10 @@ class PagesController extends Controller
             );
             $names = $request->name;
             $describe = $request->describe;
-            DB::table('documents')->insert(['name'=>$names,
+            DB::table('documents_detail')->insert(['name'=>$names,
                                             'describe'=>$describe,
-                                            'link'=>$nameOfFile]);
+                                            'link'=>$nameOfFile,
+                                            'user_id'=>'1']);
             return view('pages.study.kyNangMem', compact('names', 'describe'));
         } else {
             echo "Chưa có file";
