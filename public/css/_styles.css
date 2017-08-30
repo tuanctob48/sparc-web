@@ -1,0 +1,90 @@
+/* Just some base styles not needed for example to function */
+/* CSS Tree menu styles */
+
+caption {
+	color: #3174c7;
+	font-size: 100%;
+	text-align: center;
+}
+
+
+table th tr td{
+	border: 1px solid;
+}
+
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+
+a {
+	cursor: pointer;
+	color: #3174c7;
+	text-decoration: none;
+}
+
+ol.tree
+{
+	width: 10%;
+}
+	li 
+	{ 
+		position: relative;
+		list-style: none;
+	}
+	li.file
+	{
+		margin-left: 5px !important;
+	}
+		li.file a
+		{
+			background: url(/img/document.png) 0 0 no-repeat;
+			color: #fff;
+			padding-left: 21px;
+			text-decoration: none;
+			display: block;
+		}
+		li.file a[href *= '.pdf']	{ background: url(/img/document.png) 0 0 no-repeat; }
+		li.file a[href *= '.html']	{ background: url(/img/document.png) 0 0 no-repeat; }
+		li.file a[href $= '.css']	{ background: url(/img/document.png) 0 0 no-repeat; }
+		li.file a[href $= '.js']		{ background: url(/imgdocument.png) 0 0 no-repeat; }
+		li.file a[href $= '.cpp'] {}
+	li input
+	{
+		position: absolute;
+		left: 0;
+		margin-left: 0;
+		opacity: 0;
+		z-index: 2;
+		cursor: pointer;
+		height: 1em;
+		width: 1em;
+		top: 0;
+	}
+		li input + ol
+		{
+			background: url(/img/toggle-small-expand.png) 40px -3px no-repeat;
+			margin: -1.25em 0 0 -44px; /* 20px */
+			padding: 1.563em 0 0 80px;
+			height: auto;
+		}
+		li input + ol > li { display: none; margin: 0 0 0.125em;  /* 2px */}
+
+	li label
+	{
+		background: url(/img/folder-horizontal.png) 15px 1px no-repeat;
+		cursor: pointer;
+		display: block;
+		padding-left: 37px;
+	}
+	
+	li input:checked + ol
+	{
+		background: url(/img/toggle-small.png) 40px -3px no-repeat;
+		margin: -1.25em 0 0 -44px; /* 20px */
+		padding: 1.563em 0 0 80px;
+		height: auto;
+	}
+		li input:checked + ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
+		li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
